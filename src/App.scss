@@ -445,6 +445,83 @@ body::-webkit-scrollbar-track {
 .css-g2z002-MuiSvgIcon-root-MuiPaginationItem-icon {
   color: $primary;
 }
+.login__container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  background-image: url("./assets/loginbg.jpg");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  padding: 1em;
+}
+.login__container__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  max-width: 560px;
+  height: fit-content;
+}
+.side__bar__content__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  width: 100%;
+}
+.side__bar__content__form__logo {
+  font-size: 34px;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+.input__box {
+  width: 100%;
+  padding: 1em;
+  background: rgba(255, 255, 255, 0.1);
+  color: #000000;
+  border: none;
+  outline: none;
+  margin-bottom: 0.8em;
+  border-radius: 6px;
+  transition: 300ms ease-in-out;
+  color: #ffffff;
+}
+.input__box::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.input__box:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.input__box:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+.login__btn {
+  width: 50%;
+  padding: 1em;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  cursor: pointer;
+  border: none;
+  transition: 300ms ease-in-out;
+  margin-top: 1.5em;
+}
+.login__btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
 @media (max-width: 1000px) {
   .App {
     flex-direction: column;
