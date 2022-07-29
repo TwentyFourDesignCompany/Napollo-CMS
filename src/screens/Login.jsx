@@ -1,22 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NAPOLLO_API from "../APIs/API";
+import Loader from "../components/Loader";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export default function Login({ setOnLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
+
+  const navigation = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
     let axiosConfig = {
       headers: {
         Authorization: "Basic eW9vOjEyMzQ1Njc=",
-        "Content-Type": "application/json;charset=UTF-8",
-        "Access-Control-Allow-Origin": "*",
       },
     };
-
+    setLoader(true);
     axios
       .post(
         `http://napollo-env-1.eba-gyut3nvj.us-east-2.elasticbeanstalk.com/napollo/login?provider=napollo&platform=android`,
@@ -27,18 +29,27 @@ export default function Login({ setOnLogin }) {
         axiosConfig
       )
       .then((res) => {
-        console.log(res);
+        setLoader(false);
+        if (res.data.responseStatus === true) {
+          navigation("dashboard", { replace: true });
+        } else {
+          alert("Invalid Login Credentials");
+        }
       })
       .catch((res) => {
         console.log("errr", res);
+        setLoader(false);
       });
   }
 
   useEffect(() => {
     setOnLogin(true);
+    disableBodyScroll(document);
+    return setOnLogin(false);
   }, []);
   return (
     <div className="login__container">
+      {loader && <Loader />}
       <div className="login__container__content">
         <form onSubmit={handleSubmit} className="side__bar__content__form">
           <div className="side__bar__content__form__logo">Napollo</div>

@@ -22,7 +22,7 @@ function SideBar() {
         <div className="sidebar__container__heading">John Smith</div>
       </div>
       <div className="sidebar__container__content">
-        <Link to="/" className="sidebar__container__entry">
+        <Link to="/dashboard" className="sidebar__container__entry">
           <svg
             width="30"
             height="31"

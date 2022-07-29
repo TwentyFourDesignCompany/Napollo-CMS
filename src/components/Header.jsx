@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="header__contaniner">
       <div className="header__contaniner__left">
-        <Link to="/" className="loogo__wrapper">
+        <Link to="/dashboard" className="loogo__wrapper">
           <img src={Logo} alt="Logo" className="header__img" />
         </Link>
         <div className="header__input__wrappper">

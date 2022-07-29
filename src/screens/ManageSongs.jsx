@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import userPic from "../assets/userPic.png";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import axios from "axios";
+import Loader from "../components/Loader";
 
 function ManageUsersContentRow() {
   return (
@@ -56,8 +58,37 @@ function ManageUsersContentRow() {
 }
 
 function ManageSongs() {
+  const [loader, setLoader] = useState(false);
+
+  const _fetchSongs = () => {
+    let axiosConfig = {
+      headers: {
+        Authorization: "Basic eW9vOjEyMzQ1Njc=",
+      },
+    };
+    setLoader(true);
+    axios
+      .get(
+        `http://napollo-env-1.eba-gyut3nvj.us-east-2.elasticbeanstalk.com/napollo/media/popular`,
+        axiosConfig
+      )
+      .then((res) => {
+        console.log(res);
+        setLoader(false);
+      })
+      .catch((res) => {
+        console.log("errr", res);
+        setLoader(false);
+      });
+  };
+
+  useEffect(() => {
+    _fetchSongs();
+  }, []);
+
   return (
     <div className="main__wrapper">
+      {loader && <Loader />}
       <div className="main__wrapper__header">
         <div className="main__wrapper__header__heading">
           Manage Songs

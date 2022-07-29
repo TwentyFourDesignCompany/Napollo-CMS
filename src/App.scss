@@ -16,6 +16,7 @@ body {
   background-color: $secondary;
   padding: 0em 2em;
   scroll-behavior: smooth;
+  position: relative;
 }
 body::-webkit-scrollbar {
   width: 6px;
@@ -28,6 +29,19 @@ body::-webkit-scrollbar-thumb {
 }
 body::-webkit-scrollbar-track {
   background: transparent;
+}
+.loader__container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 999;
 }
 .App {
   display: flex;
