@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NAPOLLO_API from "../APIs/API";
@@ -6,31 +7,33 @@ export default function Login({ setOnLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigation = useNavigate();
-
-  const _LoginUser = async () => {
-    try {
-      const payload = {
-        Usernamr: username,
-        Password: password,
-      };
-      const res = await NAPOLLO_API.loginUser(payload);
-      console.log(res);
-    } catch (error) {
-      console.log("error", error.toString());
-    }
-  };
-  console.log(username);
-  //   useLayoutEffect(() => {
-  //     if (window.localStorage.getItem("user") != null) {
-  //       navigate("/dashboard");
-  //     }
-  //   }, []);
-
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    _LoginUser();
-  };
+    let axiosConfig = {
+      headers: {
+        Authorization: "Basic eW9vOjEyMzQ1Njc=",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
+    axios
+      .post(
+        `http://napollo-env-1.eba-gyut3nvj.us-east-2.elasticbeanstalk.com/napollo/login?provider=napollo&platform=android`,
+        {
+          Username: username,
+          Password: password,
+        },
+        axiosConfig
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        console.log("errr", res);
+      });
+  }
+
   useEffect(() => {
     setOnLogin(true);
   }, []);

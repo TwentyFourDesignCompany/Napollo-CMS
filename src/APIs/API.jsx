@@ -1,7 +1,7 @@
 import axiosInstance from "./axios";
 
 const loginUser = async (payload) => {
-  const response = await axiosInstance.get(
+  const response = await axiosInstance.post(
     "/login?provider=napollo&platform=android",
     payload
   );
